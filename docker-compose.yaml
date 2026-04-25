@@ -1,0 +1,8 @@
+services:
+  app:
+    build: .
+    container_name: practica-docker-app
+    ports: ["5000:5000"]
+  dashboard:
+    image: postman/newman
+    depends_on: [app]
