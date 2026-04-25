@@ -7,21 +7,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@ v4
+    - uses: actions/setup-node@ v4
+      with:
+        node-version: '18'
 
-      - name: Saludo
-        run: echo "hola a la clase"
+    - name: Install NNewman
+      run: npm install -g new m an \
+        new m an-reporter-htm lextra
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install Newman
-        run: |
-          npm install -g newman newman-reporter-htmlextra
-
-      - name: Run API tests
-        run: |
-          newman run postman/collection.json \
-            -e postman/environment.dev.json
+    - name: Run API tests
+      run: new m an run postm an/collection.json \
+        -e postm an/environm ent.dev.json
