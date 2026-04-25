@@ -18,8 +18,8 @@ jobs:
             -v ${{ github.workspace }}/postman:/etc/newman \
             -v ${{ github.workspace }}/reports:/reports \
             postman/newman \
-            run collection.json \
-            -e environment.dev.json \
+            run /etc/newman/collection.json \
+            -e /etc/newman/environment.dev.json \
             -r cli,htmlextra \
             --reporter-htmlextra-export /reports/report.html
 
