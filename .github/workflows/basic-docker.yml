@@ -47,7 +47,7 @@ jobs:
           API_TOKEN: ${{ secrets.API_TOKEN }}
           API_URL: ${{ secrets.API_URL_DEV }}
         run: |
-          newman run postman/collection.json \
+          newman run postman/postman-collection.json \
             -e postman/environment.dev.json \
             --env-var "token=$API_TOKEN" \
             --env-var "baseUrl=$API_URL" \
@@ -56,9 +56,9 @@ jobs:
 
       - name: Run API tests with data file
         run: |
-          newman run collection.json \
-            -e environment.json \
-            -d data/usuarios.csv \
+          newman run postman/postman-collection.json \
+            -e postman/environment.dev.json \
+            -d postman/data/usuarios.csv \
             -r cli,htmlextra \
             --reporter-htmlextra-export reports/report.html
 
