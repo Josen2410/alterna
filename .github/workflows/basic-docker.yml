@@ -11,15 +11,17 @@ jobs:
       - name: saludadno
         run: echo "hola a la clase"
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '18'
 
-      - name: Install Newman
-        run: npm install -g newman newman-reporter-htmlextra
-
-      - name: Run API tests
-        run: newman run postman/collection.json -e postman/environment.dev.json
+      - name: Run Newman via Docker
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}/postman:/etc/newman \
+            -v ${{ github.workspace }}/reports:/reports \
+            postman/newman \
+            run collection.json \
+            -e environment.dev.json \
+            -r cli,htmlextra \
+            --reporter-htmlextra-export /reports/report.html
 
       - name: Install Newman and reporter
         run: |
