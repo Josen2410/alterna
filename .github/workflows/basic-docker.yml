@@ -6,11 +6,10 @@ jobs:
   hello:
     runs-on: ubuntu-latest
     name: hello
-    steps: 
+    steps:
       - uses: actions/checkout@v4
       - name: saludadno
         run: echo "hola a la clase"
-    steps_2:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
