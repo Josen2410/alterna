@@ -11,31 +11,27 @@ jobs:
       - name: saludadno
         run: echo "hola a la clase"
     steps_2:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-      node-version: '18'
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-    - name: Install N ew m an
-      run: npm install -g new m an \
-        new m an-reporter-htm lextra
+      - name: Install Newman
+        run: npm install -g newman newman-reporter-htmlextra
 
-    - name: Run API tests
-      run: new m an run postm an/collection.json \
-        -e postm an/environm ent.dev.json
+      - name: Run API tests
+        run: newman run postman/collection.json -e postman/environment.dev.json
 
-    - name: Install N ew m an and reporter
-      run: |
-        npm install -g new m an \
-        new m an-reporter-htm lextra
+      - name: Install Newman and reporter
+        run: |
+          npm install -g newman newman-reporter-htmlextra
 
-    - name: Run API tests
-      run: |
-        new m an run postm an/collection.json \
-        -e postm an/environm ent.dev.json \
-        -r cli,htm lextra \
-        --reporter-htm lextra-export \
-        reports/report.htm l
+      - name: Run API tests
+        run: |
+          newman run postman/collection.json \
+            -e postman/environment.dev.json \
+            -r cli,htmlextra \
+            --reporter-htmlextra-export reports/report.html
 
 
   despachando:
