@@ -7,8 +7,37 @@ jobs:
     runs-on: ubuntu-latest
     name: hello
     steps: 
+      - uses: actions/checkout@v4
       - name: saludadno
         run: echo "hola a la clase"
+    steps:
+    - uses: actions/checkout@ v4
+    - uses: actions/setup-node@ v4
+      with:
+      node-version: '18'
+
+    - name: Install N ew m an
+      run: npm install -g new m an \
+        new m an-reporter-htm lextra
+
+    - name: Run API tests
+      run: new m an run postm an/collection.json \
+        -e postm an/environm ent.dev.json
+
+    - name: Install N ew m an and reporter
+      run: |
+        npm install -g new m an \
+        new m an-reporter-htm lextra
+
+    - name: Run API tests
+      run: |
+        new m an run postm an/collection.json \
+        -e postm an/environm ent.dev.json \
+        -r cli,htm lextra \
+        --reporter-htm lextra-export \
+          reports/report.htm l
+
+
   despachando:
       runs-on: ubuntu-latest
       name: bye
@@ -16,3 +45,5 @@ jobs:
       steps: 
         - name: despidiendo
           run: echo "bye bye a la clase"
+
+  
