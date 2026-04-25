@@ -11,8 +11,8 @@ jobs:
       - name: saludadno
         run: echo "hola a la clase"
     steps:
-    - uses: actions/checkout@ v4
-    - uses: actions/setup-node@ v4
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
       node-version: '18'
 
@@ -35,7 +35,7 @@ jobs:
         -e postm an/environm ent.dev.json \
         -r cli,htm lextra \
         --reporter-htm lextra-export \
-          reports/report.htm l
+        reports/report.htm l
 
 
   despachando:
