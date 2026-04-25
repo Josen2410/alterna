@@ -32,6 +32,34 @@ jobs:
             -r cli,htmlextra \
             --reporter-htmlextra-export reports/report.html
 
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-report
+          path: reports/report.html
+          retention-days: 7
+
+      - name: Run API tests with env
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+          API_URL: ${{ secrets.API_URL_DEV }}
+        run: |
+          newman run postman/collection.json \
+            -e postman/environment.dev.json \
+            --env-var "token=$API_TOKEN" \
+            --env-var "baseUrl=$API_URL" \
+            -r cli,htmlextra \
+            --reporter-htmlextra-export reports/report.html
+
+      - name: Run API tests with data file
+        run: |
+          newman run collection.json \
+            -e environment.json \
+            -d data/usuarios.csv \
+            -r cli,htmlextra \
+            --reporter-htmlextra-export reports/report.html
+
 
   despachando:
       runs-on: ubuntu-latest
